@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.field_user {
+    width: 500px;
+    box-shadow: 0 0 5px grey;
+    margin: 20px;
+}
+
+label {
+    margin-left: 20px;
+}
+
+.input {
+    width: 88%;
+    height: 20px;
+    padding: 5px;
+    margin: 20px;
+}
+
+.user_list {
+    width: 100%;
+    margin: auto;
+}
+
+.user {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid grey;
+}
+
+#user-nome {
+    width: 65%;
+    height: 30px;
+}
+#user-del {
+    width: 30%;
+    height: 30px;
+}
