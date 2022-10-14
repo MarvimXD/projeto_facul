@@ -11,7 +11,6 @@ if (!$_SESSION['logado'] && !$_SESSION['artista']) {
     exit();
 }
 
-$pesquisa = $_GET['search'];
 
 $model = new Model;
 $model->addUser();
@@ -42,25 +41,24 @@ $model->addUser();
     <form method="POST">
         <div class="container">
             <div class="field_user">
-
-                
-                <h2 style="margin: 20px;text-align:center;">Painel</h2>
+                <h2 style="margin: 20px;text-align:center;">Painel Apresentações</h2>
                 <br>
-                <label for=""><a href="add_user.php">> Adicionar Usuário</a></label><br>
+                <label for=""><a href="add_espetaculo.php">> Adicionar Espetáculo</a></label><br>
 
 
                 <br>
+                <a style="margin:20px;" href="painel.php">Voltar <</a>
                 <br>
 
 
             </div>
         </div>
     </form>
-    <!-- PESQUISA  -->
+    <!-- PESQUISA 
     <form action="painel_results.php" method="get">
         <div class="container">
             <div class="field_user">
-                <h2 style="margin: 20px;text-align:center;">Pesquisar Usuário</h2>
+                <h2 style="margin: 20px;text-align:center;">Pesquisar Apresentações</h2>
                 <br>
 
                 <input type="text" class="input" name="search" placeholder="Pesquise um artista..."><br>
@@ -71,26 +69,25 @@ $model->addUser();
 
 
         </div>
-    </form>
+    </form> -->
+
     <!-- LISTA  -->
     <div class="container">
-        <div class="field_user">
-            <h2 style="margin: 20px;text-align:center;">Lista de Usuários</h2>
+        <div class="field_user" style="width: 600px;">
+            <h2 style="margin: 20px;text-align:center;">Lista de Espetáculos</h2>
             <br>
 
             <?php
-            $sql = mysqli_query($conexao, "SELECT * FROM users WHERE user LIKE '%$pesquisa%' ORDER BY id DESC");
+            $sql = mysqli_query($conexao, "SELECT * FROM espetaculos ORDER BY id DESC");
             while ($v = mysqli_fetch_array($sql)) {
 
-                $idType = $v['type'];
-                $type = mysqli_fetch_array(mysqli_query($conexao, "SELECT * FROM users_type WHERE id = '$idType'"));
 
                 echo '<div class="user_list">
                             <div class="user" id="user-nome">
-                                <h3>' . $v['user'] . ' - </h3> <p> ' . $type['type'] . '</p>
+                                <h3>' . ucfirst($v['titulo']) . '</h3> 
                             </div>
                             <div class="user" id="user-del">
-                                <a href="edit_user.php?id=' . $v['id'] . '">Editar |</a>
+                                <a href="add_artista.php?id=' . $v['id'] . '">+ Artistas |</a>
                                 <a style="color:red;" href="../../php/deleteUser.php?id=' . $v['id'] . '"> | Deletar</a>
                             </div>
                         </div>';
