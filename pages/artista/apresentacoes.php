@@ -41,6 +41,11 @@ $model->addUser();
     <form method="POST">
         <div class="container">
             <div class="field_user">
+                <?php if (isset($_SESSION['del'])) : ?>
+                    <label style="color:green;" for="">Deletado com Sucesso!</label><br>
+                    <br>
+                <?php unset($_SESSION['del']);
+                endif; ?>
                 <h2 style="margin: 20px;text-align:center;">Painel Apresentações</h2>
                 <br>
                 <label for=""><a href="add_espetaculo.php">> Adicionar Espetáculo</a></label><br>
@@ -88,7 +93,7 @@ $model->addUser();
                             </div>
                             <div class="user" id="user-del">
                                 <a href="add_artista.php?id=' . $v['id'] . '">+ Artistas |</a>
-                                <a style="color:red;" href="../../php/deleteUser.php?id=' . $v['id'] . '"> | Deletar</a>
+                                <a style="color:red;" href="../../php/deleteEsp.php?id=' . $v['id'] . '"> | Deletar</a>
                             </div>
                         </div>';
             }
