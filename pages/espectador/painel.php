@@ -54,7 +54,7 @@ $model->sorteio();
 
                 echo '<div class="user_list">
                             <div class="user" id="user-nome">
-                                <h3>' . $user['user'] . ' </h3>
+                                <h3>Sorteio N°: ' . $v['id'] . ' </h3>
                             </div>
                             <div class="user" id="user-del">
                                 <p> Em: ' . $v['data'] . '</p>
@@ -67,6 +67,40 @@ $model->sorteio();
 
 
         </div>
+        
+
+
+    </div>
+    <!-- LISTA  -->
+    <div class="container">
+        <div class="field_user">
+            <h2 style="margin: 20px;text-align:center;">Sorteios Não Ganhos</h2>
+            <br>
+
+            <?php
+            $id = $_SESSION['id'];
+            $sql = mysqli_query($conexao, "SELECT * FROM sorteios WHERE espectador != '$id' ORDER BY data_sistema DESC");
+            while ($v = mysqli_fetch_array($sql)) {
+
+                $idUser = $v['espectador'];
+                $user = mysqli_fetch_array(mysqli_query($conexao, "SELECT * FROM users WHERE id = '$idUser'"));
+
+                echo '<div class="user_list">
+                            <div class="user" id="user-nome">
+                                <h3>Sorteio N°: ' . $v['id'] . ' </h3>
+                            </div>
+                            <div class="user" id="user-del">
+                                <p> Em: ' . $v['data'] . '</p>
+                            </div>
+                        </div>';
+            }
+            ?>
+
+
+
+
+        </div>
+        
 
 
     </div>
