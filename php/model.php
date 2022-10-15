@@ -90,6 +90,13 @@ class Model
             $pass = mysqli_real_escape_string($this->conexao, trim(md5($_POST['pass'])));
             $type = mysqli_real_escape_string($this->conexao, trim($_POST['type']));
 
+            $test = mysqli_num_rows(mysqli_query($this->conexao, "SELECT * FROM users WHERE user = '$user'"));
+            if($test != 0) {
+                $_SESSION['n_inserido'] = true;
+                header('Location: ../../pages/artista/painel.php');
+                exit();
+            }
+
             $sql = mysqli_query($this->conexao, "UPDATE users SET user = '$user', password = '$pass', type = '$type' WHERE id = '$uid'");
             $_SESSION['atualizado'] = true;
             header('Location: ../../pages/artista/painel.php');

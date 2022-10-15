@@ -41,7 +41,11 @@ $model->addUser();
     <form method="POST">
         <div class="container">
             <div class="field_user">
-
+            <?php if (isset($_SESSION['n_inserido'])) : ?>
+                    <label style="color:red;" for="">Esse usuário já foi cadastrado!</label><br>
+                    <br>
+                <?php unset($_SESSION['n_inserido']);
+                endif; ?>
                 <?php if (isset($_SESSION['atualizado'])) : ?>
                     <label style="color:green;" for="">Usuário atualizado com sucesso!</label><br>
                     <br>

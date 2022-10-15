@@ -9,8 +9,9 @@ if($_SESSION['id'] == $id) {
     header('Location: ../pages/artista/painel.php');
     exit();
 }
-
+mysqli_query($conexao, "SET FOREIGN_KEY_CHECKS=0");
 mysqli_query($conexao, "DELETE FROM users WHERE id = '$id'");
+mysqli_query($conexao, "SET FOREIGN_KEY_CHECKS=1");
 $_SESSION['del'] = true;
 header('Location: ../pages/artista/painel.php');
 exit();
