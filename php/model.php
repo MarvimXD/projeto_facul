@@ -47,7 +47,7 @@ class Model
                     $_SESSION['nome'] = $v['user'];
                     $_SESSION['logado'] = true;
                     $_SESSION['cliente'] = true;
-                    header('Location: pages/artista/cliente.php');
+                    header('Location: pages/espectador/painel.php');
                     exit();
                 }
             }
@@ -136,4 +136,23 @@ class Model
 
         }
     }
+
+
+    public function sorteio() {
+        if(isset($_POST['sortear'])) {
+            
+            $sql = mysqli_fetch_array(mysqli_query($this->conexao, "SELECT * FROM users WHERE type = 1 ORDER BY RAND()"));
+            $userSorteado = $sql['id'];
+
+            mysqli_query($this->conexao, "INSERT INTO sorteios (espectador, data, data_sistema) VALUES ('$userSorteado', NOW(), NOW())");
+            
+            $_SESSION['inserido'] = $sql['user'];
+            header('Location: ../../pages/artista/sorteio.php');
+            exit();
+
+        }
+    }
+
+
+
 }
